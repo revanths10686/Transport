@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivanmalai Murugan Bus Service</title>
+    <style>
+        /* CSS Variables for Brand Colors */
+        :root {
+            --primary-color: #ff7b00; /* Vibrant Orange */
+            --primary-dark: #e66a00;
+            --secondary-color: #2c3e50; /* Dark Blue/Gray */
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+            --text-color: #444444;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Layout Container */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            flex-wrap: wrap; /* Helps with mobile view */
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hero Section (No Image, CSS Gradient instead) --- */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a252f 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--white);
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* --- Main Content Sections --- */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        /* --- About & Features Content --- */
+        .about-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .feature-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* --- Route Info Section --- */
+        .routes {
+            background-color: var(--white);
+        }
+
+        .route-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .route-list li {
+            background-color: var(--light-bg);
+            margin-bottom: 10px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--secondary-color);
+            border: 1px solid #e0e0e0;
+        }
+
+        .route-list li span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* --- Contact Section --- */
+        .contact {
+            background-color: var(--light-bg);
+        }
+
+        .contact-card {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-details {
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-item h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item p {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .contact-item p.address-text {
+            color: var(--text-color);
+            font-weight: normal;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        /* --- Mobile Responsive Rules --- */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+
+            .about-content, .contact-card {
+                padding: 25px 15px;
+            }
+
+            .route-list li {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">Sivanmalai <span>Murugan</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#routes">Our Routes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Sivanmalai Murugan</h1>
+            <h2>Bus Service</h2>
+            <p>"Trust your journey"</p>
+            <a href="#contact" class="btn">Contact for Bookings</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            
+            <div class="about-content">
+                <p>Welcome to <strong>Sivanmalai Murugan Bus Service</strong>, proudly based out of Kangayam. We are dedicated to providing the highest quality daily transit services for our community. Whether you are commuting for work or traveling to see family, we ensure a smooth, comfortable, and timely ride.</p>
+                <p>Under the management of our proprietor, <strong>Revanth</strong>, we maintain strict safety protocols and schedule adherence so you can always rely on us.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <h4>Punctuality</h4>
+                        <p>We respect your time. Our schedules are strictly maintained to ensure on-time departures and arrivals.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Comfortable Seating</h4>
+                        <p>Well-maintained interiors designed to give you a relaxing experience throughout your trip.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Experienced Drivers</h4>
+                        <p>Safety first. Our team consists of highly skilled drivers who know the regional routes perfectly.</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>Affordable Travel</h4>
+                        <p>Premium service without the premium price tag. We offer highly competitive ticket pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="routes" class="section routes">
+        <div class="container">
+            <h2 class="section-title">Popular Daily Services</h2>
+            <ul class="route-list">
+                <li>Kangayam ➔ Palladam <span>Daily</span></li>
+                <li>Palladam ➔ Kangayam <span>Daily</span></li>
+                <li>Kangayam ➔ Perundurai <span>Daily</span></li>
+                <li>Perundurai ➔ Kangayam <span>Daily</span></li>
+                <li>Special Event Charters <span>Available on Request</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div class="contact-card">
+                <p>Have a question about our timings, lost luggage, or charter booking? Reach out to us directly.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <h4>Proprietor</h4>
+                        <p>Revanth</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Email Support</h4>
+                        <p><a href="mailto:sivanmalaimuruganbusservice@gmail.com">sivanmalaimuruganbusservice@gmail.com</a></p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h4>Head Office / Depot</h4>
+                        <p class="address-text">Sivanmalai Murugan Bus Service<br>Kangayam, Tamil Nadu</p>
+                    </div>
+                </div>
+                <br>
+                <a href="mailto:sivanmalaimuruganbusservice@gmail.com" class="btn">Send us an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Sivanmalai Murugan Bus Service</strong></p>
+            <p>Trust your journey</p>
+            <br>
+            <p>&copy; 2026 All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
